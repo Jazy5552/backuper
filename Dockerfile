@@ -1,5 +1,6 @@
 FROM alpine:3.9
 
+# ****************************************************
 # Prefix for backup tar files
 ENV BACKUP_PREFIX="backup-"
 
@@ -14,6 +15,7 @@ ENV BACKUP_CRON_TIME="0 9 */3 * *"
 
 # Number of days after which a back is stale and can be deleted
 ENV STALE_BACKUP_TIME="30"
+# ****************************************************
 
 COPY entrypoint.sh /
 COPY run-backup.sh /
