@@ -7,6 +7,5 @@ tar pcf $filename .
 # Remove old backups
 find $BACKUP_OUTPUT_DIR -type f -name "*.tar" -mtime +$STALE_BACKUP_TIME -exec rm {} \;
 
-touch /backuplog.txt
 echo "$(du -sh $filename)" >> /backuplog.txt
 

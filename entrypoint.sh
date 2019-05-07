@@ -14,5 +14,7 @@ echo "$BACKUP_CRON_TIME sh /run-backup.sh" > /backup-cron.cron
 
 crontab /backup-cron.cron
 crond
-/bin/sh # Keep container alive
+
+touch /backuplog.txt
+tail -f /backuplog.txt # Keep container alive
 
