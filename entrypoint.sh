@@ -5,7 +5,7 @@ mkdir -p $BACKUP_OUTPUT_DIR
 
 sh /run-backup.sh
 
-if [ ! $CONTINOUS_BACKUP ]
+if [ "$CONTINOUS_BACKUP" = false ]
 then
   exit
 fi
