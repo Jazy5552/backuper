@@ -1,0 +1,21 @@
+version: '3.5'
+  backuper:
+    deploy:
+      restart_policy:
+        delay: 5m
+        max_attempts: 10
+    environment:
+      - "CONTINOUS_BACKUP=true"
+      - "BACKUP_FILES=./service/storage/" # Relative to /backup-output
+      - "BACKUP_FILES=." # All files
+      - "BACKUP_PREFIX=my-service-"
+      - "BACKUP_CRON_TIME=0 8 */3 * *"
+      - "BACKUP_INPUT_DIR=/backup-input"
+      - "BACKUP_OUTPUT_DIR=/backup-output"
+      - "STALE_BACKUP_TIME=30" # Delete backups older than this many days
+    image: jazy5552/backuper
+    labels:
+      jazy.service.backuper.description: "Container to create backups for a service"
+    volumes:
+      - "service-data:/backup-input:ro"
+      - "/home/jazy/service-dir/backups:/backup-output"
