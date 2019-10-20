@@ -1,5 +1,5 @@
 #!/bin/sh
-set -x
+#set -x
 mkdir -p $BACKUP_INPUT_DIR
 mkdir -p $BACKUP_OUTPUT_DIR
 
@@ -10,11 +10,13 @@ then
   exit
 fi
 
-echo "$BACKUP_CRON_TIME sh /run-backup.sh" > /backup-cron.cron
+env > /backup-cron.env
+echo "$BACKUP_CRON_TIME cat /backup-cron.env | env sh /run-backup.sh" > /backup-cron.cron
 
 crontab /backup-cron.cron
-crond
 
 touch /backuplog.txt
+crond -L /backuplog.txt
+
 tail -f /backuplog.txt # Keep container alive
 
