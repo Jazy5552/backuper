@@ -2,7 +2,7 @@ FROM alpine:3.9
 
 # ****************************************************
 # Prefix for backup tar files
-ENV BACKUP_PREFIX="backup-"
+ENV BACKUP_PREFIX="backup"
 
 # Specific files to backup (Appended to tar command)
 ENV BACKUP_FILES="."
