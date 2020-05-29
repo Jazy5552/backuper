@@ -10,8 +10,8 @@ then
   exit
 fi
 
-env > /backup-cron.env
-echo "$BACKUP_CRON_TIME source /backup-cron.env && sh /run-backup.sh" > /backup-cron.cron
+env > /backup-cron.cron
+echo "$BACKUP_CRON_TIME sh /run-backup.sh" >> /backup-cron.cron
 
 crontab /backup-cron.cron
 
