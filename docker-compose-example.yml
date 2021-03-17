@@ -4,11 +4,12 @@ version: '3.5'
     deploy:
       restart_policy:
         delay: 5m
-        max_attempts: 10
+        max_attempts: 5
     environment:
       - "CONTINOUS_BACKUP=true"
-      - "BACKUP_FILES=./service/storage/" # Relative to /backup-output
-      - "BACKUP_FILES=." # All files
+      - "BACKUP_FILES=./service/storage/" # Relative to /backup-input (service-data)
+     #- "BACKUP_FILES=." # All files
+     #- "BACKUP_FILES=./service.file1 ./service.file2 ./servicedir/" # Space delimited file paths
       - "BACKUP_PREFIX=my-service"
       - "BACKUP_CRON_TIME=0 8 */3 * *"
       - "BACKUP_INPUT_DIR=/backup-input"
